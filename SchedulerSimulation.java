@@ -36,8 +36,8 @@ class Process implements Runnable {
     private int priority; // Priority level from 1 to 5, where 5 is the highest
 
     // Feature 3: fields for waiting time tracking
-     private long lastQueueEnterTime;
-     private long totalWaitingTime;
+    private long lastQueueEnterTime;
+    private long totalWaitingTime;
 
     // Constructor to initialize the process with name, burst time, and time quantum
     public Process(String name, int burstTime, int timeQuantum, int priority) {
@@ -172,8 +172,7 @@ class Process implements Runnable {
     // Feature 3: return total waiting time
     public long getTotalWaitingTime() {
         return totalWaitingTime;
-}
-
+    }
 
     // Check if the process has finished (i.e., no remaining time)
     public boolean isFinished() {
@@ -249,7 +248,7 @@ public class SchedulerSimulation {
             Process process = new Process("P" + i, burstTime, timeQuantum, priority);
 
             // Feature 3: keep reference to all created processes
-                allProcesses.add(process);
+            allProcesses.add(process);
 
             // Add the process to the ready queue and the map
             addProcessToQueue(process, processQueue, processMap);
@@ -288,11 +287,10 @@ public class SchedulerSimulation {
             }
             System.out.println(Colors.BRIGHT_WHITE + "]" + Colors.RESET);
             System.out.println(Colors.BOLD + Colors.MAGENTA + "└" + "─".repeat(79) + Colors.RESET + "\n");
-                
-            
+
             // Feature 3: update waiting time before process starts execution
-                Process currentProcess = processMap.get(currentThread);
-                currentProcess.updateWaitingTime();
+            Process currentProcess = processMap.get(currentThread);
+            currentProcess.updateWaitingTime();
 
             // Start the thread, which will run the process for one time quantum
             currentThread.start();
@@ -348,13 +346,12 @@ public class SchedulerSimulation {
         // Feature 3: display waiting time summary
         System.out.println();
         System.out.println(Colors.BOLD + Colors.BRIGHT_YELLOW + "Waiting Time Summary:" + Colors.RESET);
-        System.out.println(Colors.YELLOW + "Process Name   Burst Time      Waiting Time" + Colors.RESET);       
-         for (Process process : allProcesses) {
-           System.out.println(Colors.CYAN + process.getName() + Colors.RESET + "                " +
-            Colors.BRIGHT_YELLOW + process.getBurstTime() + "ms" + Colors.RESET + "            " +
-            Colors.MAGENTA + process.getTotalWaitingTime() + "ms" + Colors.RESET);
-}
-
+        System.out.println(Colors.YELLOW + "Process Name   Burst Time      Waiting Time" + Colors.RESET);
+        for (Process process : allProcesses) {
+            System.out.println(Colors.CYAN + process.getName() + Colors.RESET + "                " +
+                    Colors.BRIGHT_YELLOW + process.getBurstTime() + "ms" + Colors.RESET + "            " +
+                    Colors.MAGENTA + process.getTotalWaitingTime() + "ms" + Colors.RESET);
+        }
 
     }
 
@@ -381,10 +378,6 @@ public class SchedulerSimulation {
                 Colors.RESET + Colors.BLUE + " added to ready queue" + Colors.RESET +
                 " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" +
                 Colors.RESET);
-
-
-
-
 
     }
 }
